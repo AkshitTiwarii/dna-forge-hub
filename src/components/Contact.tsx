@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, MessageSquare } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Terminal, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -28,40 +28,43 @@ const Contact = () => {
     await new Promise(resolve => setTimeout(resolve, 1500));
 
     toast({
-      title: "Message Sent!",
-      description: "Thank you for reaching out. We'll get back to you soon.",
+      title: "TRANSMISSION SENT",
+      description: "Message received. Preparing response protocol...",
     });
 
     setFormData({ name: '', email: '', subject: '', message: '' });
     setIsSubmitting(false);
   };
 
-  const contactInfo = [
+  const contactMethods = [
     {
       icon: Mail,
-      title: 'Email',
-      value: 'hello@dnasociety.dev',
-      link: 'mailto:hello@dnasociety.dev'
+      title: 'MAIL.PROTOCOL',
+      value: 'hello@dnaforge.dev',
+      link: 'mailto:dna.developers.next.gen@outlook.com',
+      desc: 'Primary communication channel'
     },
     {
-      icon: Phone,
-      title: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567'
+      icon: Terminal,
+      title: 'SSH.ACCESS',
+      value: 'ssh://dev.dnaforge.hub',
+      link: '#',
+      desc: 'Direct terminal access'
     },
     {
       icon: MapPin,
-      title: 'Address',
+      title: 'LOCATION.NODE',
       value: 'Tech Hub, Innovation District',
-      link: 'https://maps.google.com'
+      link: 'https://maps.google.com',
+      desc: 'Physical coordinates'
     }
   ];
 
   const socialLinks = [
-    { icon: Github, href: 'https://github.com/dnasociety', label: 'GitHub' },
-    { icon: Linkedin, href: 'https://linkedin.com/company/dnasociety', label: 'LinkedIn' },
+    { icon: Github, href: 'https://github.com/DNA-DEVELOPERS-DEV', label: 'GitHub' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/dna-devs/', label: 'LinkedIn' },
     { icon: Twitter, href: 'https://twitter.com/dnasociety', label: 'Twitter' },
-    { icon: MessageSquare, href: 'https://discord.gg/dnasociety', label: 'Discord' }
+    { icon: MessageCircle, href: 'https://discord.gg/dnasociety', label: 'Discord' }
   ];
 
   return (
@@ -174,7 +177,7 @@ const Contact = () => {
             <div className="glass-card p-8 rounded-2xl">
               <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
               <div className="space-y-6">
-                {contactInfo.map((info, index) => (
+                {contactMethods.map((info, index) => (
                   <div key={index} className="flex items-start space-x-4">
                     <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center flex-shrink-0">
                       <info.icon className="h-6 w-6 text-white" />

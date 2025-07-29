@@ -11,7 +11,7 @@ const Events = () => {
       attendees: 100,
       registrations: 200,
       description: 'A comprehensive 3-day workshop covering modern web development technologies, frameworks, and best practices.',
-      tags: ['Web Development', 'HTML', 'CSS', 'JavaScript'],
+      tags: ['Web Development', 'React', 'Node.js', 'Workshop'],
       status: 'completed',
       highlights: ['100+ Attendees', '200+ Registrations', '3 Days Intensive Training', 'Virtual Format']
     }

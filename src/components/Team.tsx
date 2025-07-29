@@ -4,8 +4,8 @@ import { Button } from '@/components/ui/button';
 const Team = () => {
   const teamMembers = [
     {
-      name: 'Alex Chen',
-      role: 'Founder & Lead Developer',
+      name: 'Deepansu',
+      role: 'Founder',
       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
       bio: 'Full-stack developer passionate about React, Node.js, and AI integration.',
       github: 'https://github.com',
@@ -13,8 +13,8 @@ const Team = () => {
       email: 'alex@dnasociety.dev'
     },
     {
-      name: 'Sarah Rodriguez',
-      role: 'UI/UX Designer',
+      name: 'Ayush Yadav',
+      role: 'Co-Founder',
       image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
       bio: 'Design systems expert creating beautiful and accessible user experiences.',
       github: 'https://github.com',
@@ -22,16 +22,16 @@ const Team = () => {
       email: 'sarah@dnasociety.dev'
     },
     {
-      name: 'Marcus Johnson',
-      role: 'DevOps Engineer',
+      name: 'Akshit Tiwari',
+      role: 'Lead',
       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
       bio: 'Cloud infrastructure specialist focused on scalable and secure deployments.',
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-      email: 'marcus@dnasociety.dev'
+      github: 'https://github.com/AkshitTiwarii',
+      linkedin: 'https://www.linkedin.com/in/akshit-tiwarii/',
+      email: 'akshittiwari29@gmail.com'
     },
     {
-      name: 'Emily Zhang',
+      name: 'Rajan Jha',
       role: 'Mobile Developer',
       image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
       bio: 'React Native and Flutter expert building cross-platform mobile solutions.',
