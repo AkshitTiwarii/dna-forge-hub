@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import { Eye, EyeOff, Github, Mail, Lock, User, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
+import { signUp, signInWithGithub } from '@/lib/auth';
+import { supabase } from '@/lib/supabase';
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -13,14 +16,40 @@ const Signup = () => {
     confirmPassword: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { toast } = useToast();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle signup logic here
+    
     if (formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
+      toast({
+        title: "Error",
+        description: "Passwords do not match!",
+        variant: "destructive"
+      });
       return;
     }
-    console.log('Signup attempt:', formData);
+
+    try {
+      const { error } = await signUp(formData.email, formData.password);
+      
+      if (error) throw error;
+
+      toast({
+        title: "Success",
+        description: "Account created successfully! Please check your email for verification.",
+      });
+      
+      // Redirect to login page after successful signup
+      navigate('/login');
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to create account",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -196,6 +225,26 @@ const Signup = () => {
           <Button
             variant="outline"
             className="w-full border-gray-700 hover:bg-gray-800 py-3"
+            onClick={async () => {
+              try {
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                  provider: 'github',
+                  options: {
+                    redirectTo: `${window.location.origin}/auth/callback`
+                  }
+                });
+                
+                if (error) throw error;
+                
+                // Redirect will happen automatically
+              } catch (error: any) {
+                toast({
+                  title: "Error",
+                  description: error.message || "Failed to sign in with GitHub",
+                  variant: "destructive"
+                });
+              }
+            }}
           >
             <Github className="h-5 w-5 mr-2" />
             Continue with GitHub
