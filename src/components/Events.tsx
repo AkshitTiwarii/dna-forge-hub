@@ -14,7 +14,7 @@ const Events = () => {
       description: 'A comprehensive 3-day workshop covering modern web development technologies, frameworks, and best practices.',
       tags: ['Web Development', 'HTML', 'CSS', 'JavaScript'],
       status: 'completed',
-      highlights: ['100+ Attendees', '200+ Registrations', '3 Days Intensive Training', 'Virtual Format']
+      highlights: ['46 Participants', '46 Certificates Issued', '3 Days Intensive Training', 'Virtual Format']
     }
   ];
 
