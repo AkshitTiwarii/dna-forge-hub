@@ -7,7 +7,7 @@ const Events = () => {
       title: 'Web Development Workshop',
       date: '2025-07-25',
       endDate: '2025-07-27',
-      time: '9:00 AM - 5:00 PM',
+      time: '7:00 PM - 8:00 PM',
       location: 'Virtual Event',
       attendees: 100,
       registrations: 200,

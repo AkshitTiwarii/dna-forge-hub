@@ -8,6 +8,11 @@
 /* DNA Forge Hub - Black Minimalist Design System */
 
 @layer base {
+  /* Smooth scrolling for the entire page */
+  html {
+    scroll-behavior: smooth;
+  }
+  
   :root {
     /* Pure Black Minimalist Theme */
     --background: 0 0% 0%;

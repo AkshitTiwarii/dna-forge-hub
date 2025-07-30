@@ -1,4 +1,4 @@
-import { Github, Linkedin, Mail, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, Mail, ExternalLink, Code, Award, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Team = () => {
@@ -6,57 +6,47 @@ const Team = () => {
     {
       name: 'Deepansu',
       role: 'Founder',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=face',
-      bio: 'Full-stack developer passionate about React, Node.js, and AI integration.',
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-      email: 'alex@dnasociety.dev'
+      image: 'https://protoinfrastack.ivondy.com/media/mD04kvKDT6cPxePlQgackjPis435Vay1N9NB',
+      bio: 'Visionary leader with 5+ years in full-stack development. Specializes in React, Node.js, and AI integration. Founded DNA Forge Hub to bridge the gap between academia and industry.',
+      github: 'https://github.com/DeepanshuS1',
+      linkedin: 'https://www.linkedin.com/in/deepansu-214a7b269',
+      email: 'Deepanshu1484s@gmail.com',
+      skills: ['HTML', 'CSS', 'JS', 'AI/ML', 'C'],
+      achievements: ['Founder of DNA Society', 'Web Developer', 'Event Lead', 'Developer of DNA Forge Hub']
     },
     {
       name: 'Ayush Yadav',
-      role: 'Co-Founder',
-      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=400&h=400&fit=crop&crop=face',
-      bio: 'Design systems expert creating beautiful and accessible user experiences.',
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-      email: 'sarah@dnasociety.dev'
+      role: 'Co-Founder & Design Lead',
+      image: 'https://protoinfrastack.ivondy.com/media/KIGUxx3DWzQvMumBjDRufbfrye58TtMs4aZf',
+      bio: 'Creative mastermind behind intuitive user experiences. Skilled in accessibility-first design systems and modern frontend development. Committed to crafting digital products that empower and include every user.',
+      github: 'https://github.com/ayushrewd',
+      linkedin: 'https://www.linkedin.com/in/ayush-yadav-171161328',
+      email: 'raoayush496@gmail.com',
+      skills: ['UI/UX Design', 'Prompt Engineer', 'Design Expert', 'Content Creator'],
+      achievements: ['Award-winning designer', 'Led design for 5+ projects', 'Co-Founder of DNA Society']
     },
     {
       name: 'Akshit Tiwari',
-      role: 'Lead',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=face',
-      bio: 'Cloud infrastructure specialist focused on scalable and secure deployments.',
+      role: 'Technical Lead & Community Manager',
+      image: 'https://protoinfrastack.ivondy.com/media/p2Hh0x5oB8j1tofNGA6TydU4lsVJOZuuvWF3',
+      bio: 'Cloud infrastructure specialist with expertise in scalable deployments. Passionate about automation, security, and performance optimization. Leads our technical architecture decisions.',
       github: 'https://github.com/AkshitTiwarii',
       linkedin: 'https://www.linkedin.com/in/akshit-tiwarii/',
-      email: 'akshittiwari29@gmail.com'
+      email: 'akshittiwari29@gmail.com',
+      skills: ['Android', 'AI/ML', 'Kotlin', 'Java','C','Python'],
+      achievements: ['Mentor & Contributor GSSoC 25', 'Contributor to OSconnect', 'Lead Developer for DNA Forge Hub']
     },
     {
       name: 'Rajan Jha',
-      role: 'Mobile Developer',
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=face',
-      bio: 'React Native and Flutter expert building cross-platform mobile solutions.',
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-      email: 'emily@dnasociety.dev'
+      role: 'Mobile Development Specialist',
+      image: 'https://protoinfrastack.ivondy.com/media/rbrduTcOIEatoaXF26WUFdTeSpr8CascZV9v',
+      bio: 'Cross-platform mobile expert specializing in React Native and Flutter. Creates seamless mobile experiences with focus on performance and user engagement.',
+      github: 'https://github.com/rajanjha',
+      linkedin: 'https://linkedin.com/in/rajanjha',
+      email: 'rajan@dnaforgehub.dev',
+      skills: ['React Native', 'Flutter', 'iOS', 'Android'],
+      achievements: ['10+ apps in production', '1M+ downloads', 'Google Play featured developer']
     },
-    {
-      name: 'David Kumar',
-      role: 'Backend Architect',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=face',
-      bio: 'Microservices and database optimization specialist with 8+ years experience.',
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-      email: 'david@dnasociety.dev'
-    },
-    {
-      name: 'Lisa Thompson',
-      role: 'Community Manager',
-      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400&h=400&fit=crop&crop=face',
-      bio: 'Building connections and fostering growth within our developer community.',
-      github: 'https://github.com',
-      linkedin: 'https://linkedin.com',
-      email: 'lisa@dnasociety.dev'
-    }
   ];
 
   return (
@@ -67,10 +57,35 @@ const Team = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             Meet Our <span className="gradient-text">Team</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            The brilliant minds behind DNA Society. Each member brings unique expertise 
-            and passion to our collective mission of innovation.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            The brilliant minds behind DNA Forge Hub. Each member brings unique expertise 
+            and passion to our collective mission of innovation and community building.
           </p>
+          
+          {/* Team Stats */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
+            <div className="glass-card p-4 rounded-xl">
+              <div className="flex items-center justify-center mb-2">
+                <Users className="h-6 w-6 text-green-400 mr-2" />
+                <span className="text-2xl font-bold text-green-400">6</span>
+              </div>
+              <p className="text-sm text-muted-foreground">Core Team Members</p>
+            </div>
+            <div className="glass-card p-4 rounded-xl">
+              <div className="flex items-center justify-center mb-2">
+                <Code className="h-6 w-6 text-cyan-400 mr-2" />
+                <span className="text-2xl font-bold text-cyan-400">5+</span>
+              </div>
+              <p className="text-sm text-muted-foreground">Years Combined Experience</p>
+            </div>
+            <div className="glass-card p-4 rounded-xl">
+              <div className="flex items-center justify-center mb-2">
+                <Award className="h-6 w-6 text-purple-400 mr-2" />
+                <span className="text-2xl font-bold text-purple-400">10+</span>
+              </div>
+              <p className="text-sm text-muted-foreground">Projects Delivered</p>
+            </div>
+          </div>
         </div>
 
         {/* Team Grid */}
@@ -96,16 +111,38 @@ const Team = () => {
               <div className="text-center">
                 <h3 className="text-xl font-bold mb-2">{member.name}</h3>
                 <p className="text-primary font-medium mb-3">{member.role}</p>
-                <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
+                <p className="text-muted-foreground text-sm mb-4 leading-relaxed">
                   {member.bio}
                 </p>
+
+                {/* Skills */}
+                <div className="flex flex-wrap justify-center gap-2 mb-4">
+                  {member.skills?.map((skill, idx) => (
+                    <span
+                      key={idx}
+                      className="bg-gray-800 border border-green-400/30 text-green-400 px-2 py-1 rounded-full text-xs font-mono"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+
+                {/* Achievements */}
+                <div className="mb-6">
+                  <h4 className="text-xs font-bold text-muted-foreground mb-2 uppercase tracking-wide">Key Achievements</h4>
+                  <div className="space-y-1">
+                    {member.achievements?.slice(0, 2).map((achievement, idx) => (
+                      <p key={idx} className="text-xs text-muted-foreground">• {achievement}</p>
+                    ))}
+                  </div>
+                </div>
 
                 {/* Social Links */}
                 <div className="flex justify-center space-x-3">
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="w-10 h-10 p-0 hover:bg-primary hover:text-primary-foreground transition-colors"
+                    className="w-10 h-10 p-0 hover:bg-green-400 hover:text-black transition-colors"
                     asChild
                   >
                     <a href={member.github} target="_blank" rel="noopener noreferrer">
@@ -116,7 +153,7 @@ const Team = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="w-10 h-10 p-0 hover:bg-primary hover:text-primary-foreground transition-colors"
+                    className="w-10 h-10 p-0 hover:bg-blue-400 hover:text-black transition-colors"
                     asChild
                   >
                     <a href={member.linkedin} target="_blank" rel="noopener noreferrer">
@@ -127,7 +164,7 @@ const Team = () => {
                   <Button
                     variant="ghost"
                     size="sm"
-                    className="w-10 h-10 p-0 hover:bg-primary hover:text-primary-foreground transition-colors"
+                    className="w-10 h-10 p-0 hover:bg-purple-400 hover:text-black transition-colors"
                     asChild
                   >
                     <a href={`mailto:${member.email}`}>
@@ -149,7 +186,7 @@ const Team = () => {
               for innovation and community building.
             </p>
             <Button className="btn-primary" asChild>
-              <a href="#contact">
+              <a href="https://chat.whatsapp.com/K2juuB2pTby8nXiCRXXRjQ" target="_blank" rel="noopener noreferrer">
                 Get In Touch
                 <ExternalLink className="ml-2 h-4 w-4" />
               </a>

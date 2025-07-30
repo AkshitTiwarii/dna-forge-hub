@@ -1,4 +1,5 @@
-import { Calendar, Clock, MapPin, Users, Plus } from 'lucide-react';
+import { Calendar, Clock, MapPin, Users, Plus, Award } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Events = () => {
   const pastEvents = [
@@ -6,7 +7,7 @@ const Events = () => {
       title: 'Web Development Workshop',
       date: '2025-07-25',
       endDate: '2025-07-27',
-      time: '9:00 AM - 5:00 PM',
+      time: '7:00 PM - 8:00 PM',
       location: 'Virtual Event',
       attendees: 100,
       registrations: 200,
@@ -113,6 +114,29 @@ const Events = () => {
               <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce"></div>
               <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
               <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+            </div>
+          </div>
+        </div>
+
+        {/* Rewards and Certificates Section */}
+        <div className="mt-16 text-center">
+          <div className="glass-card p-8 rounded-2xl max-w-3xl mx-auto border border-orange-400/30">
+            <div className="mb-6">
+              <div className="w-16 h-16 bg-orange-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Award className="h-8 w-8 text-orange-400" />
+              </div>
+              <h3 className="text-3xl font-bold text-orange-400 mb-4 font-mono">Event Rewards & Certificates</h3>
+              <p className="text-xl text-muted-foreground mb-6">
+                Download your certificates and view rewards from our past events. Showcase your achievements and keep track of your learning journey with DNA Lead Community.
+              </p>
+              
+              <Link 
+                to="/rewards" 
+                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-400 to-red-400 text-black font-bold rounded-full hover:shadow-lg hover:shadow-orange-400/25 transition-all duration-300 transform hover:scale-105"
+              >
+                <Award className="h-5 w-5 mr-2" />
+                View Rewards & Certificates
+              </Link>
             </div>
           </div>
         </div>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Certificate Generator</title>
+    <style>
+        .certificate {
+            width: 1200px;
+            height: 800px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px;
+            box-sizing: border-box;
+            border: 20px solid #fff;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+            margin: 20px auto;
+        }
+        
+        .header h1 {
+            font-size: 48px;
+            font-weight: bold;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 2px;
+        }
+        
+        .header h2 {
+            font-size: 28px;
+            margin: 10px 0 0 0;
+            font-weight: normal;
+            opacity: 0.9;
+        }
+        
+        .divider {
+            width: 300px;
+            height: 3px;
+            background: white;
+            margin: 20px 0;
+            opacity: 0.8;
+        }
+        
+        .recipient-name {
+            font-size: 42px;
+            font-weight: bold;
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: 1px;
+        }
+        
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin-top: 60px;
+            align-items: flex-end;
+        }
+        
+        .signature-line {
+            width: 200px;
+            height: 2px;
+            background: white;
+            margin-bottom: 10px;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="certificate" id="certificate">
+        <div class="header" style="text-align: center; margin-bottom: 40px;">
+            <h1>CERTIFICATE</h1>
+            <h2>OF PARTICIPATION</h2>
+        </div>
+
+        <div class="divider"></div>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <p style="font-size: 22px; margin: 0 0 20px 0; opacity: 0.9;">This is to certify that</p>
+            
+            <h3 class="recipient-name">Sample Participant</h3>
+            
+            <p style="font-size: 20px; margin: 30px 0; line-height: 1.6; opacity: 0.9;">
+                has successfully completed the<br/>
+                <strong>DNA Lead Community Event</strong>
+            </p>
+        </div>
+
+        <div class="footer">
+            <div style="text-align: left;">
+                <p style="margin: 0; font-size: 16px; opacity: 0.8;">Issue Date:</p>
+                <p style="margin: 5px 0 0 0; font-size: 18px; font-weight: bold;">July 20, 2025</p>
+            </div>
+            
+            <div style="text-align: center;">
+                <div class="signature-line"></div>
+                <p style="margin: 0; font-size: 16px; opacity: 0.8;">Authorized Signature</p>
+            </div>
+            
+            <div style="text-align: right;">
+                <p style="margin: 0; font-size: 16px; opacity: 0.8;">Certificate ID:</p>
+                <p style="margin: 5px 0 0 0; font-size: 18px; font-weight: bold;">DNA2025-SAMPLE</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
