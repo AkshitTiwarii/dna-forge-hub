@@ -2,6 +2,8 @@ import { Terminal } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useStore } from '@/lib/store';
+import { UserAvatar } from './UserAvatar';
 
 const Navigation = () => {
   const [activeSection, setActiveSection] = useState('home');

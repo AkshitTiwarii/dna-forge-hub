@@ -10,26 +10,40 @@ import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
 import Opportunities from "./pages/Opportunities";
 import NotFound from "./pages/NotFound";
+import AuthCallback from "./pages/AuthCallback";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient();
+
+import { UserProvider } from './contexts/user-context';
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
+      <UserProvider>
+        <Toaster />
+        <Sonner />
+        <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/rewards" element={<Rewards />} />
+          <Route 
+            path="/rewards" 
+            element={
+              <ProtectedRoute>
+                <Rewards />
+              </ProtectedRoute>
+            } 
+          />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/opportunities" element={<Opportunities />} />
+          <Route path="/auth/callback" element={<AuthCallback />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
+      </UserProvider>
     </TooltipProvider>
   </QueryClientProvider>
 );

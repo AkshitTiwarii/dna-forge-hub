@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
 
 const Contact = () => {
   const { toast } = useToast();
@@ -24,16 +25,45 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    try {
+      // Initialize EmailJS with your public key
+      emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
 
-    toast({
-      title: "TRANSMISSION SENT",
-      description: "Message received. Preparing response protocol...",
-    });
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        to_name: "DNA Forge Hub Team",
+        reply_to: formData.email,
+      };
 
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    setIsSubmitting(false);
+      console.log('Sending email with params:', templateParams);
+
+      const result = await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        templateParams,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      if (result.status === 200) {
+        toast({
+          title: "TRANSMISSION SENT",
+          description: "Message received. Preparing response protocol...",
+        });
+
+        setFormData({ name: '', email: '', subject: '', message: '' });
+      }
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactMethods = [
