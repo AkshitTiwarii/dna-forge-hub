@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { Award, Download, Calendar, Users, ArrowLeft, Trophy, Medal, Star, Search, Filter, X } from 'lucide-react';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import { completeCertificates } from '@/data/completeCertificates';
-import { downloadCertificate } from '@/utils/certificateGenerator';
+import { certificatesFromCSV } from '@/data/certificatesFromCSV';
+import { downloadCertificate } from '@/utils/simpleCertificateDownload';
 
 const Rewards = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -16,8 +16,8 @@ const Rewards = () => {
     eventName: true,
     certificateId: true
   });
-  // Use the complete certificates from CSV data (all 211 participants)
-  const certificates = completeCertificates;
+  // Use the certificates from CSV data (46 participants)
+  const certificates = certificatesFromCSV;
 
   const categories = [
     { id: 'all', name: 'All Rewards', icon: Star },
@@ -67,7 +67,7 @@ const Rewards = () => {
     setSelectedCategory('all');
   };
 
-  const handleDownload = async (certificate: any, format: 'pdf' | 'png' = 'pdf') => {
+  const handleDownload = async (certificate: any, format: 'png' = 'png') => {
     const certId = certificate.id;
     setDownloadingCerts(prev => new Set([...prev, certId]));
     
@@ -401,33 +401,24 @@ const Rewards = () => {
                     {/* Download Button */}
                     <div className="flex gap-2">
                       <button
-                        onClick={() => handleDownload(certificate, 'pdf')}
+                        onClick={() => handleDownload(certificate, 'png')}
                         disabled={downloadingCerts.has(certificate.id)}
-                        className={`flex-1 flex items-center justify-center px-4 py-3 bg-gradient-to-r from-orange-400 to-red-400 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-orange-400/25 transition-all duration-300 transform hover:scale-105 ${
+                        className={`flex-1 flex items-center justify-center px-4 py-3 bg-gradient-to-r from-green-400 to-blue-400 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-green-400/25 transition-all duration-300 transform hover:scale-105 ${
                           downloadingCerts.has(certificate.id) ? 'opacity-50 cursor-not-allowed' : ''
                         }`}
+                        title="Download certificate as PNG image"
                       >
                         {downloadingCerts.has(certificate.id) ? (
                           <>
                             <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-black mr-2"></div>
-                            Generating...
+                            Downloading...
                           </>
                         ) : (
                           <>
                             <Download className="h-4 w-4 mr-2" />
-                            Download (PDF)
+                            Download Certificate
                           </>
                         )}
-                      </button>
-                      <button
-                        onClick={() => handleDownload(certificate, 'png')}
-                        disabled={downloadingCerts.has(certificate.id)}
-                        className={`px-4 py-3 bg-gradient-to-r from-blue-400 to-purple-400 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-blue-400/25 transition-all duration-300 transform hover:scale-105 ${
-                          downloadingCerts.has(certificate.id) ? 'opacity-50 cursor-not-allowed' : ''
-                        }`}
-                        title="Download as PNG image"
-                      >
-                        {downloadingCerts.has(certificate.id) ? '...' : 'PNG'}
                       </button>
                     </div>
                   </div>
