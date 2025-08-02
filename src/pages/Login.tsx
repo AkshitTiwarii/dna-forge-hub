@@ -1,19 +1,42 @@
 import { useState } from 'react';
 import { Eye, EyeOff, Github, Mail, Lock, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useToast } from '@/hooks/use-toast';
+import { signIn, signInWithGithub } from '@/lib/auth';
+import { supabase } from '@/lib/supabase';
 
 const Login = () => {
+  const { toast } = useToast();
+  const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Handle login logic here
-    console.log('Login attempt:', formData);
+    
+    try {
+      const { error } = await signIn(formData.email, formData.password);
+      
+      if (error) throw error;
+
+      toast({
+        title: "Success",
+        description: "Logged in successfully!",
+      });
+      
+      // Redirect to home page after successful login
+      navigate('/');
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.message || "Failed to login",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -136,6 +159,26 @@ const Login = () => {
           <Button
             variant="outline"
             className="w-full border-gray-700 hover:bg-gray-800 py-3"
+            onClick={async () => {
+              try {
+                const { data, error } = await supabase.auth.signInWithOAuth({
+                  provider: 'github',
+                  options: {
+                    redirectTo: `${window.location.origin}/auth/callback`
+                  }
+                });
+                
+                if (error) throw error;
+                
+                // Redirect will happen automatically
+              } catch (error: any) {
+                toast({
+                  title: "Error",
+                  description: error.message || "Failed to sign in with GitHub",
+                  variant: "destructive"
+                });
+              }
+            }}
           >
             <Github className="h-5 w-5 mr-2" />
             Continue with GitHub
