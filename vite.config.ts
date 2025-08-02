@@ -16,4 +16,19 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Optimize build for deployment
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
+    // Ensure compatibility with different platforms
+    target: 'esnext',
+    minify: 'esbuild',
+  },
+  optimizeDeps: {
+    // Include dependencies that might cause issues
+    include: ['react', 'react-dom'],
+  },
 }));
