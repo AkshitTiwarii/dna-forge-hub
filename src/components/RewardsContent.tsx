@@ -151,56 +151,102 @@ const RewardsContent = () => {
         </div>
 
         {/* Certificates Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {filteredCertificates.map((certificate) => (
-            <div
-              key={certificate.certificateId}
-              className="glass-card p-6 rounded-2xl hover:shadow-lg hover:shadow-orange-400/10 transition-all border border-orange-400/30"
-            >
-              <div className="flex items-start justify-between mb-4">
-                <div>
-                  <h3 className="text-xl font-bold text-white mb-1">{certificate.recipientName}</h3>
-                  <p className="text-sm text-muted-foreground">{certificate.recipientEmail}</p>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="px-3 py-1 bg-orange-400/20 text-orange-400 rounded-full text-sm font-mono">
-                    {certificate.type}
-                  </span>
-                </div>
-              </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {filteredCertificates.map((certificate) => (
+                <div
+                  key={certificate.id}
+                  className="glass-card rounded-2xl overflow-hidden hover-glow group"
+                >
+                  {/* Certificate Thumbnail */}
+                  <div className="relative h-48 overflow-hidden bg-gradient-to-br from-orange-400/20 to-red-400/20">
+                    <div className="w-full h-full flex items-center justify-center">
+                      <Award className="h-20 w-20 text-orange-400/50" />
+                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
+                    
+                    {/* Type Badge */}
+                    <div className="absolute top-4 right-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-mono uppercase ${
+                        certificate.type === 'certificate' ? 'bg-green-400 text-black' :
+                        certificate.type === 'award' ? 'bg-yellow-400 text-black' :
+                        'bg-purple-400 text-black'
+                      }`}>
+                        {certificate.type}
+                      </span>
+                    </div>
 
-              <div className="space-y-3 mb-6">
-                <div className="flex items-center text-muted-foreground">
-                  <Calendar className="h-4 w-4 mr-2 text-orange-400" />
-                  <span>{certificate.issueDate}</span>
-                </div>
-                <div className="flex items-center text-muted-foreground">
-                  <Trophy className="h-4 w-4 mr-2 text-orange-400" />
-                  <span>{certificate.eventName}</span>
-                </div>
-                <div className="flex items-center text-muted-foreground">
-                  <Award className="h-4 w-4 mr-2 text-orange-400" />
-                  <span>{certificate.title}</span>
-                </div>
-              </div>
+                    {/* Certificate ID */}
+                    <div className="absolute top-4 left-4">
+                      <span className="bg-black/50 backdrop-blur-sm text-white px-2 py-1 rounded text-xs font-mono">
+                        ID: {certificate.certificateId}
+                      </span>
+                    </div>
+                  </div>
 
-              <button
-                onClick={() => handleCertificateDownload(certificate.certificateId)}
-                disabled={downloadingCerts.has(certificate.certificateId)}
-                className="w-full flex items-center justify-center px-4 py-3 bg-gradient-to-r from-orange-400 to-red-400 text-black font-bold rounded-xl hover:shadow-lg hover:shadow-orange-400/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {downloadingCerts.has(certificate.certificateId) ? (
-                  <span>Downloading...</span>
-                ) : (
-                  <>
-                    <Download className="h-5 w-5 mr-2" />
-                    Download Certificate
-                  </>
-                )}
-              </button>
+                  {/* Certificate Info */}
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold mb-2 text-white group-hover:text-orange-400 transition-colors duration-300">
+                      {certificate.title}
+                    </h3>
+                    
+                    {/* Recipient Info */}
+                    <div className="mb-4 p-3 bg-black/30 rounded-lg">
+                      <div className="text-sm">
+                        <div className="text-orange-400 font-semibold">{certificate.recipientName}</div>
+                        <div className="text-muted-foreground text-xs">{certificate.recipientEmail}</div>
+                      </div>
+                    </div>
+                    
+                    <p className="text-muted-foreground text-sm mb-4">
+                      {certificate.description}
+                    </p>
+
+                    <div className="space-y-2 mb-6">
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <Calendar className="h-4 w-4 mr-2 text-orange-400" />
+                        {new Date(certificate.issueDate).toLocaleDateString('en-US', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </div>
+                      <div className="flex items-center text-sm text-muted-foreground">
+                        <Users className="h-4 w-4 mr-2 text-orange-400" />
+                        Individual Certificate
+                      </div>
+                    </div>
+
+                    <div className="text-xs text-muted-foreground mb-4 font-mono">
+                      From: {certificate.eventName}
+                    </div>
+
+                    {/* Download Button */}
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => handleCertificateDownload(certificate.certificateId)}
+                        disabled={downloadingCerts.has(certificate.id)}
+                        className={`flex-1 flex items-center justify-center px-4 py-3 bg-gradient-to-r from-green-400 to-blue-400 text-black font-bold rounded-lg hover:shadow-lg hover:shadow-green-400/25 transition-all duration-300 transform hover:scale-105 ${
+                          downloadingCerts.has(certificate.id) ? 'opacity-50 cursor-not-allowed' : ''
+                        }`}
+                        title="Download certificate as PNG image"
+                      >
+                        {downloadingCerts.has(certificate.id) ? (
+                          <>
+                            <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-black mr-2"></div>
+                            Downloading...
+                          </>
+                        ) : (
+                          <>
+                            <Download className="h-4 w-4 mr-2" />
+                            Download Certificate
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
 
         {/* Back Home */}
         <div className="text-center">
