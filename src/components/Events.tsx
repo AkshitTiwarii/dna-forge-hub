@@ -7,19 +7,6 @@ const Events = () => {
 
   const Events = [
     {
-      title: 'Web Development Workshop',
-      date: 'July 25-27, 2025',
-      time: '7:00 PM - 8:00 PM',
-      location: 'Virtual Event',
-      attendees: 100,
-      registrations: 200,
-      description: 'A comprehensive 3-day workshop covering modern web development technologies, frameworks, and best practices.',
-      tags: ['Web Development', 'HTML', 'CSS', 'JavaScript'],
-      status: 'completed',
-      highlights: ['100+ Participants', '46 Certificates Issued', '3 Days Intensive Training', 'Virtual Format'],
-      link: null
-    },
-    {
       title: 'DNA X OSCI',
       date: '2025-08-03',
       endDate: '',
@@ -32,6 +19,19 @@ const Events = () => {
       status: 'Ongoing',
       highlights: ['Open Source Contribution', '15 Days Intensive Training', 'Virtual Format'],
       link: null
+    },
+    {
+      title: 'Web Development Workshop',
+      date: 'July 25-27, 2025',
+      time: '7:00 PM - 8:00 PM',
+      location: 'Virtual Event',
+      attendees: 100,
+      registrations: 200,
+      description: 'A comprehensive 3-day workshop covering modern web development technologies, frameworks, and best practices.',
+      tags: ['Web Development', 'HTML', 'CSS', 'JavaScript'],
+      status: 'completed',
+      highlights: ['100+ Participants', '46 Certificates Issued', '3 Days Intensive Training', 'Virtual Format'],
+      link: null
     }
   ];
 
@@ -43,15 +43,26 @@ const Events = () => {
           <h2 className="text-4xl md:text-5xl font-bold mb-6">
             <span className="gradient-text">Events</span> & Meetups
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
             Join our community events, workshops, and hackathons. Learn, network,
             and collaborate with fellow developers.
           </p>
+          
+          {/* Certificate/Rewards Link */}
+          <div className="flex justify-center mt-8">
+            <Link
+              to="/rewards"
+              className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-green-400 to-cyan-400 text-black font-semibold hover:from-green-500 hover:to-cyan-500 transition-all duration-300 group"
+            >
+              <Award className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              View Event Certificates
+            </Link>
+          </div>
         </div>
 
         {/* Recent Event */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold mb-8 text-center">Recent Events</h3>
+          <h3 className="text-2xl font-bold mb-8 text-center">Events</h3>
           <div className="grid grid-cols-1 max-w-3xl mx-auto gap-5">
             {Events.map((event, index) => (
               <div
@@ -110,19 +121,19 @@ const Events = () => {
                   ))}
                 </div>
 
-                {/* Registration Button */}
-                <div className="flex justify-center">
+                {/* Action Buttons */}
+                <div className="flex justify-center gap-4">
+                  {/* Registration/Status Button */}
                   <button
                     className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
                       event.status.toLowerCase() === 'completed'
-                        ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                        ? 'bg-gray-600 text-gray-400'
                         : 'bg-green-400 text-black hover:bg-green-500'
                     }`}
-                    disabled={event.status.toLowerCase() === 'completed'}
                     onClick={() => {
-                      if (event.link) {
+                      if (event.status.toLowerCase() !== 'completed' && event.link) {
                         window.open(event.link, '_blank');
-                      } else {
+                      } else if (event.status.toLowerCase() !== 'completed') {
                         toast({
                           title: "Registration Link",
                           description: "Registration link will be available soon!",
@@ -131,8 +142,19 @@ const Events = () => {
                       }
                     }}
                   >
-                    {event.status.toLowerCase() === 'completed' ? 'Ended' : 'Join Now'}
+                    {event.status.toLowerCase() === 'completed' ? 'Event Ended' : 'Join Now'}
                   </button>
+
+                  {/* View Certificates Button (only for completed events) */}
+                  {event.status.toLowerCase() === 'completed' && (
+                    <Link
+                      to="/rewards"
+                      className="inline-flex items-center px-6 py-2 rounded-full border border-green-400 text-green-400 hover:bg-green-400/10 transition-all duration-300"
+                    >
+                      <Award className="w-4 h-4 mr-2" />
+                      View Certificates
+                    </Link>
+                  )}
                 </div>
               </div>
             ))}

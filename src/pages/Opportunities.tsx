@@ -1,6 +1,9 @@
 import { Briefcase, Code2, Trophy, BookOpen, Users, Clock, MapPin, ArrowLeft, Wrench, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import Navigation from '@/components/Navigation';
+import Footer from '@/components/Footer';
+import ScrollToTop from '@/components/ScrollToTop';
 
 const Opportunities = () => {
   const sections = [
@@ -91,7 +94,8 @@ const Opportunities = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0a] relative overflow-hidden pb-20 md:pb-0">
+      <Navigation />
       {/* Clean professional background with subtle patterns */}
       <div className="absolute inset-0">
         {/* Minimal dot grid pattern */}
@@ -219,7 +223,19 @@ const Opportunities = () => {
                   className="bg-white text-black hover:bg-gray-100 px-6 py-2 text-sm font-medium"
                   asChild
                 >
-                  <Link to="/#contact">
+                  <Link 
+                    to="/" 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = '/#contact';
+                      setTimeout(() => {
+                        document.getElementById('contact')?.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'start'
+                        });
+                      }, 0);
+                    }}
+                  >
                     Get Updates
                   </Link>
                 </Button>
@@ -229,7 +245,19 @@ const Opportunities = () => {
                   className="border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-white px-6 py-2 text-sm"
                   asChild
                 >
-                  <Link to="/#team">
+                  <Link 
+                    to="/" 
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.location.href = '/#team';
+                      setTimeout(() => {
+                        document.getElementById('team')?.scrollIntoView({
+                          behavior: 'smooth',
+                          block: 'start'
+                        });
+                      }, 0);
+                    }}
+                  >
                     Join Community
                   </Link>
                 </Button>
@@ -252,6 +280,8 @@ const Opportunities = () => {
           </div>
         </div>
       </div>
+      <Footer />
+      <ScrollToTop />
     </div>
   );
 };

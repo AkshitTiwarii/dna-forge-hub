@@ -121,6 +121,14 @@ const Navigation = () => {
             ) : (
               <Link 
                 to="/#about"
+                onClick={() => {
+                  setTimeout(() => {
+                    document.getElementById('about')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                    });
+                  }, 0);
+                }}
                 className="font-mono text-sm tracking-wide transition-all duration-300 relative text-gray-300 hover:text-green-400"
               >
                 ABOUT
@@ -145,6 +153,14 @@ const Navigation = () => {
             ) : (
               <Link 
                 to="/#team"
+                onClick={() => {
+                  setTimeout(() => {
+                    document.getElementById('team')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                    });
+                  }, 0);
+                }}
                 className="font-mono text-sm tracking-wide transition-all duration-300 relative text-gray-300 hover:text-green-400"
               >
                 TEAM
@@ -183,6 +199,14 @@ const Navigation = () => {
             ) : (
               <Link 
                 to="/#projects"
+                onClick={() => {
+                  setTimeout(() => {
+                    document.getElementById('projects')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                    });
+                  }, 0);
+                }}
                 className="font-mono text-sm tracking-wide transition-all duration-300 relative text-gray-300 hover:text-green-400"
               >
                 PROJECTS
@@ -218,6 +242,14 @@ const Navigation = () => {
             ) : (
               <Link 
                 to="/#contact"
+                onClick={() => {
+                  setTimeout(() => {
+                    document.getElementById('contact')?.scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start'
+                    });
+                  }, 0);
+                }}
                 className="font-mono text-sm tracking-wide transition-all duration-300 relative text-gray-300 hover:text-green-400"
               >
                 CONTACT

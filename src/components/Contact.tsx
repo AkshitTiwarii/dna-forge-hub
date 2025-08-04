@@ -76,7 +76,7 @@ const Contact = () => {
     },
     {
       icon: Terminal,
-      title: 'SSH.ACCESS',
+      title: 'GitHub',
       value: 'ssh://dev.dnaforge.hub',
       link: '#',
       desc: 'Direct terminal access'
@@ -84,8 +84,8 @@ const Contact = () => {
     {
       icon: MapPin,
       title: 'LOCATION.NODE',
-      value: 'Tech Hub, Innovation District',
-      link: 'https://maps.google.com',
+      value: 'Delhi',
+      link: '#',
       desc: 'Physical coordinates'
     }
   ];

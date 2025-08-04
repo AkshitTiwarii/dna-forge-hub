@@ -9,7 +9,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black pb-20 md:pb-0">
       <Navigation />
       <main className="relative z-10">
         <Hero />

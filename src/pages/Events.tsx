@@ -1,16 +1,14 @@
 import Navigation from '@/components/Navigation';
 import EventsComponent from '@/components/Events';
-import RewardsContent from '@/components/RewardsContent';
 import Footer from '@/components/Footer';
 import ScrollToTop from '@/components/ScrollToTop';
 
 const Events = () => {
   return (
-    <div className="min-h-screen bg-black">
+    <div className="min-h-screen bg-black pb-20 md:pb-0">
       <Navigation />
       <main className="relative z-10">
         <EventsComponent />
-        <RewardsContent />
       </main>
       <Footer />
       <ScrollToTop />
