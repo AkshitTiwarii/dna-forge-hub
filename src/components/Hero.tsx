@@ -112,7 +112,7 @@ const Hero = () => {
               className="border-gray-600 bg-transparent text-gray-300 hover:text-green-400 hover:border-green-400 text-lg px-8 py-4 rounded-full transition-all duration-300"
               asChild
             >
-              <a href="#projects" className="flex items-center gap-3">
+              <a href="/projects" className="flex items-center gap-3">
                 View Projects
                 <ArrowRight className="h-5 w-5" />
               </a>
@@ -132,7 +132,7 @@ const Hero = () => {
             <nav className="hidden md:flex items-center space-x-8">
               <a href="#about" className="text-gray-400 hover:text-white transition-colors text-sm">About</a>
               <a href="#features" className="text-gray-400 hover:text-white transition-colors text-sm">Features</a>
-              <a href="#projects" className="text-gray-400 hover:text-white transition-colors text-sm">Projects</a>
+              <a href="/projects" className="text-gray-400 hover:text-white transition-colors text-sm">Projects</a>
               <a href="#contact" className="text-gray-400 hover:text-white transition-colors text-sm">Contact</a>
             </nav>
           </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Mail, Phone, MapPin, Send, Github, Linkedin, Twitter, Terminal, MessageCircle } from 'lucide-react';
+import { Send, Github, Linkedin, Twitter, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -65,30 +65,6 @@ const Contact = () => {
       setIsSubmitting(false);
     }
   };
-
-  const contactMethods = [
-    {
-      icon: Mail,
-      title: 'MAIL.PROTOCOL',
-      value: 'hello@dnaforge.dev',
-      link: 'mailto:dna.developers.next.gen@outlook.com',
-      desc: 'Primary communication channel'
-    },
-    {
-      icon: Terminal,
-      title: 'GitHub',
-      value: 'ssh://dev.dnaforge.hub',
-      link: '#',
-      desc: 'Direct terminal access'
-    },
-    {
-      icon: MapPin,
-      title: 'LOCATION.NODE',
-      value: 'Delhi',
-      link: '#',
-      desc: 'Physical coordinates'
-    }
-  ];
 
   const socialLinks = [
     { icon: Github, href: 'https://github.com/DNA-DEVELOPERS-DEV', label: 'GitHub' },
@@ -203,29 +179,6 @@ const Contact = () => {
 
           {/* Contact Information */}
           <div className="space-y-8">
-            {/* Contact Details */}
-            <div className="glass-card p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
-              <div className="space-y-6">
-                {contactMethods.map((info, index) => (
-                  <div key={index} className="flex items-start space-x-4">
-                    <div className="w-12 h-12 bg-gradient-primary rounded-xl flex items-center justify-center flex-shrink-0">
-                      <info.icon className="h-6 w-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1">{info.title}</h4>
-                      <a
-                        href={info.link}
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {info.value}
-                      </a>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             {/* Social Links */}
             <div className="glass-card p-8 rounded-2xl">
               <h3 className="text-2xl font-bold mb-6">Connect With Us</h3>
@@ -243,25 +196,6 @@ const Contact = () => {
                     </a>
                   </Button>
                 ))}
-              </div>
-            </div>
-
-            {/* Office Hours */}
-            <div className="glass-card p-8 rounded-2xl">
-              <h3 className="text-2xl font-bold mb-6">Office Hours</h3>
-              <div className="space-y-3 text-muted-foreground">
-                <div className="flex justify-between">
-                  <span>Monday - Friday</span>
-                  <span>9:00 AM - 6:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Saturday</span>
-                  <span>10:00 AM - 4:00 PM</span>
-                </div>
-                <div className="flex justify-between">
-                  <span>Sunday</span>
-                  <span>Closed</span>
-                </div>
               </div>
             </div>
           </div>

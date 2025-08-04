@@ -12,42 +12,42 @@ const Opportunities = () => {
       title: 'Internships',
       description: 'Hands-on experience with real-world projects',
       color: 'blue',
-      comingSoon: true
+      path: '/internships'
     },
     {
       icon: Trophy,
       title: 'Hackathons',
       description: 'Competitive coding events and challenges',
       color: 'purple',
-      comingSoon: true
+      path: '/hackathons'
     },
     {
       icon: Code2,
       title: 'Job Openings',
       description: 'Career opportunities in tech industry',
       color: 'green',
-      comingSoon: true
+      path: '/job-openings'
     },
     {
       icon: BookOpen,
       title: 'Free Resources',
       description: 'Learning materials and study guides',
       color: 'orange',
-      comingSoon: true
+      path: '/free-resources'
     },
     {
       icon: Users,
       title: 'Mentorship',
       description: 'One-on-one guidance from industry experts',
       color: 'cyan',
-      comingSoon: true
+      path: '/mentorship'
     },
     {
       icon: Sparkles,
       title: 'Workshops',
       description: 'Skill-building sessions and training programs',
       color: 'pink',
-      comingSoon: true
+      path: '/workshops'
     }
   ];
 
@@ -156,20 +156,20 @@ const Opportunities = () => {
       {/* Main Content */}
       <div className="relative z-10 pb-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Under Development Notice */}
+          {/* Available Opportunities Notice */}
           <div className="mb-16">
             <div className="bg-[#111111] border border-gray-800 rounded-xl p-8 text-center max-w-2xl mx-auto">
-              <div className="w-12 h-12 bg-gradient-to-br from-amber-500/20 to-orange-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
-                <Wrench className="h-6 w-6 text-amber-500" />
+              <div className="w-12 h-12 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <Code2 className="h-6 w-6 text-green-500" />
               </div>
-              <h2 className="text-xl font-semibold text-white mb-3">Currently in Development</h2>
+              <h2 className="text-xl font-semibold text-white mb-3">Opportunities Portal</h2>
               <p className="text-gray-400 mb-4 text-sm leading-relaxed">
-                We're building something exceptional. This portal will launch soon with curated opportunities 
-                for the developer community.
+                Explore various opportunities curated for the developer community. 
+                Click on any category to learn more and get started.
               </p>
               <div className="flex items-center justify-center gap-2 text-xs text-gray-500">
-                <div className="w-1 h-1 bg-amber-500 rounded-full animate-pulse"></div>
-                <span>Coming Soon</span>
+                <div className="w-1 h-1 bg-green-500 rounded-full animate-pulse"></div>
+                <span>Now Available</span>
               </div>
             </div>
           </div>
@@ -178,33 +178,33 @@ const Opportunities = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
             {sections.map((section, index) => {
               const IconComponent = section.icon;
+              const colorClasses = getColorClasses(section.color);
               
               return (
-                <div
+                <Link
                   key={index}
-                  className="bg-[#111111] border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all duration-300 group relative overflow-hidden"
+                  to={section.path}
+                  className={`bg-[#111111] border border-gray-800 rounded-xl p-6 hover:border-gray-700 transition-all duration-300 group relative overflow-hidden cursor-pointer hover:scale-105 hover:shadow-lg ${colorClasses.glow}`}
                 >
-                  {/* Coming Soon Badge */}
-                  {section.comingSoon && (
-                    <div className="absolute top-4 right-4 bg-gray-900 border border-gray-700 rounded-md px-2 py-1">
-                      <span className="text-xs text-gray-500 font-medium">Soon</span>
-                    </div>
-                  )}
-                  
                   <div className="text-center">
-                    <div className="w-12 h-12 mx-auto mb-4 rounded-lg bg-gray-900 flex items-center justify-center group-hover:bg-gray-800 transition-colors">
-                      <IconComponent className="h-6 w-6 text-gray-400" />
+                    <div className={`w-12 h-12 mx-auto mb-4 rounded-lg bg-gradient-to-br ${colorClasses.bg} flex items-center justify-center group-hover:scale-110 transition-transform`}>
+                      <IconComponent className={`h-6 w-6 ${colorClasses.icon}`} />
                     </div>
                     
-                    <h3 className="text-lg font-semibold mb-3 text-white">
+                    <h3 className="text-lg font-semibold mb-3 text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-purple-400 transition-all">
                       {section.title}
                     </h3>
                     
-                    <p className="text-gray-400 text-sm leading-relaxed">
+                    <p className="text-gray-400 text-sm leading-relaxed group-hover:text-gray-300 transition-colors">
                       {section.description}
                     </p>
+
+                    <div className="mt-4 inline-flex items-center text-xs text-gray-500 group-hover:text-blue-400 transition-colors">
+                      <span>Learn More</span>
+                      <ArrowLeft className="h-3 w-3 ml-1 rotate-180 group-hover:translate-x-1 transition-transform" />
+                    </div>
                   </div>
-                </div>
+                </Link>
               );
             })}
           </div>
@@ -269,8 +269,8 @@ const Opportunities = () => {
           <div className="mt-16 text-center">
             <div className="flex items-center justify-center gap-6 text-xs text-gray-600">
               <div className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-blue-500"></div>
-                <span>In Development</span>
+                <div className="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                <span>Now Available</span>
               </div>
               <div className="flex items-center gap-2">
                 <MapPin className="h-3 w-3" />

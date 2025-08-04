@@ -18,7 +18,7 @@ const Events = () => {
       tags: ['Open Source', 'Github Profile'],
       status: 'Ongoing',
       highlights: ['Open Source Contribution', '15 Days Intensive Training', 'Virtual Format'],
-      link: null
+      link: 'https://docs.google.com/forms/d/1ANU3JcofxzfgIHEoKYxchJVPu8mBunTrf7VGuAQBKaY/viewform'
     },
     {
       title: 'Web Development Workshop',
@@ -144,6 +144,16 @@ const Events = () => {
                   >
                     {event.status.toLowerCase() === 'completed' ? 'Event Ended' : 'Join Now'}
                   </button>
+
+                  {/* Visit Us Button for DNA X OSCI */}
+                  {event.title === 'DNA X OSCI' && (
+                    <Link
+                      to="/dna-osci"
+                      className="inline-flex items-center px-6 py-2 rounded-full border border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 transition-all duration-300"
+                    >
+                      Visit Us
+                    </Link>
+                  )}
 
                   {/* View Certificates Button (only for completed events) */}
                   {event.status.toLowerCase() === 'completed' && (
