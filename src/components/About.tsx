@@ -1,32 +1,6 @@
 import { Terminal, Database, Code, Cpu } from 'lucide-react';
 
 const About = () => {
-  const capabilities = [
-    {
-      icon: Terminal,
-      title: 'SYSTEM.CORE',
-      description: 'Advanced terminal operations, system optimization, and low-level programming.',
-      metrics: '99.9% UPTIME'
-    },
-    {
-      icon: Database,
-      title: 'DATA.ENGINE',
-      description: 'Distributed databases, real-time analytics, and scalable data architecture.',
-      metrics: '10TB+ PROCESSED'
-    },
-    {
-      icon: Code,
-      title: 'DEV.STACK',
-      description: 'Full-stack development, microservices, and cloud-native applications.',
-      metrics: '100+ PROJECTS'
-    },
-    {
-      icon: Cpu,
-      title: 'AI.NEURAL',
-      description: 'Machine learning algorithms, neural networks, and intelligent automation.',
-      metrics: '95% ACCURACY'
-    }
-  ];
 
   return (
     <section id="about" className="py-32 relative overflow-hidden">
@@ -55,36 +29,6 @@ const About = () => {
             scalable, and aesthetically clean digital solutions. We specialize in 
             systems-level programming, modern web architecture, and innovative user interfaces.
           </p>
-        </div>
-
-        {/* Capabilities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-20">
-          {capabilities.map((capability, index) => (
-            <div
-              key={index}
-              className="glass-card p-6 group hover:border-glow transition-all duration-500 pulse-border"
-              style={{ animationDelay: `${index * 0.2}s` }}
-            >
-              <div className="flex items-center justify-between mb-4">
-                <capability.icon className="h-8 w-8 text-green-400 group-hover:scale-110 transition-transform" />
-                <div className="text-mono text-xs text-muted-foreground">
-                  {String(index + 1).padStart(2, '0')}
-                </div>
-              </div>
-              
-              <h3 className="text-mono font-bold text-white mb-3 tracking-wider">
-                {capability.title}
-              </h3>
-              
-              <p className="text-sm text-muted-foreground mb-4 leading-relaxed">
-                {capability.description}
-              </p>
-              
-              <div className="text-mono text-xs text-green-400 font-medium">
-                {capability.metrics}
-              </div>
-            </div>
-          ))}
         </div>
 
         {/* Core Philosophy */}

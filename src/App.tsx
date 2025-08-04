@@ -20,6 +20,7 @@ import Opportunities from "./pages/Opportunities";
 import NotFound from "./pages/NotFound";
 import AuthCallback from "./pages/AuthCallback";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Rewards from "./pages/Rewards";
 
 const queryClient = new QueryClient();
 
@@ -52,6 +53,14 @@ const router = createBrowserRouter(
       <Route path="/signup" element={<Signup />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/opportunities" element={<Opportunities />} />
+      <Route 
+        path="/rewards" 
+        element={
+          <ProtectedRoute>
+            <Rewards />
+          </ProtectedRoute>
+        }
+      />
       <Route path="/auth/callback" element={<AuthCallback />} />
       <Route path="*" element={<NotFound />} />
     </Route>
