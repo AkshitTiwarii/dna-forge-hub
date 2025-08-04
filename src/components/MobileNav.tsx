@@ -1,5 +1,6 @@
 import { Home, Users, Award, Briefcase, Mail } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
 const scrollToSection = (sectionId: string) => {
   const element = document.getElementById(sectionId);
@@ -10,6 +11,34 @@ const scrollToSection = (sectionId: string) => {
 
 const MobileNav = () => {
   const location = useLocation();
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  
+  useEffect(() => {
+    const handleScroll = () => {
+      if (location.pathname === '/') {
+        const sections = ['team', 'contact'];
+        const current = sections.find(section => {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            return rect.top <= 100 && rect.bottom >= 100;
+          }
+          return false;
+        });
+        setActiveSection(current || null);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [location.pathname]);
+
+  const isActive = (path: string, sectionId?: string) => {
+    if (path === '/' && sectionId) {
+      return location.pathname === '/' && activeSection === sectionId;
+    }
+    return location.pathname === path;
+  };
   
   const handleNavigation = (path: string, sectionId?: string) => {
     if (path !== location.pathname) {
@@ -22,6 +51,9 @@ const MobileNav = () => {
       } else {
         window.location.href = path;
       }
+    } else if (path === '/' && !sectionId) {
+      // When clicking home button while already on home page, scroll to top
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (sectionId) {
       scrollToSection(sectionId);
     }
@@ -34,8 +66,8 @@ const MobileNav = () => {
         <div className="flex items-center gap-8">
           <button
             onClick={() => handleNavigation('/events')}
-            className={`flex flex-col items-center text-xs ${
-              location.pathname === '/events' ? 'text-green-400' : 'text-muted-foreground'
+            className={`flex flex-col items-center text-xs transition-colors duration-200 ${
+              isActive('/events') ? 'text-green-400' : 'text-muted-foreground hover:text-white/80'
             }`}
           >
             <Award className="h-5 w-5" />
@@ -43,7 +75,9 @@ const MobileNav = () => {
           </button>
           <button
             onClick={() => handleNavigation('/', 'team')}
-            className="flex flex-col items-center text-xs text-muted-foreground"
+            className={`flex flex-col items-center text-xs transition-colors duration-200 ${
+              isActive('/', 'team') ? 'text-green-400' : 'text-muted-foreground hover:text-white/80'
+            }`}
           >
             <Users className="h-5 w-5" />
             <span>Team</span>
@@ -66,8 +100,8 @@ const MobileNav = () => {
         <div className="flex items-center gap-8">
           <button
             onClick={() => handleNavigation('/opportunities')}
-            className={`flex flex-col items-center text-xs ${
-              location.pathname === '/opportunities' ? 'text-green-400' : 'text-muted-foreground'
+            className={`flex flex-col items-center text-xs transition-colors duration-200 ${
+              isActive('/opportunities') ? 'text-green-400' : 'text-muted-foreground hover:text-white/80'
             }`}
           >
             <Briefcase className="h-5 w-5" />
@@ -75,7 +109,9 @@ const MobileNav = () => {
           </button>
           <button
             onClick={() => handleNavigation('/', 'contact')}
-            className="flex flex-col items-center text-xs text-muted-foreground"
+            className={`flex flex-col items-center text-xs transition-colors duration-200 ${
+              isActive('/', 'contact') ? 'text-green-400' : 'text-muted-foreground hover:text-white/80'
+            }`}
           >
             <Mail className="h-5 w-5" />
             <span>Contact</span>
