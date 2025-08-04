@@ -1,12 +1,14 @@
 import { Calendar, Clock, MapPin, Users, Plus, Award } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useToast } from "@/hooks/use-toast";
 
 const Events = () => {
-  const pastEvents = [
+  const { toast } = useToast();
+
+  const Events = [
     {
       title: 'Web Development Workshop',
-      date: '2025-07-25',
-      endDate: '2025-07-27',
+      date: 'July 25-27, 2025',
       time: '7:00 PM - 8:00 PM',
       location: 'Virtual Event',
       attendees: 100,
@@ -14,7 +16,22 @@ const Events = () => {
       description: 'A comprehensive 3-day workshop covering modern web development technologies, frameworks, and best practices.',
       tags: ['Web Development', 'HTML', 'CSS', 'JavaScript'],
       status: 'completed',
-      highlights: ['46 Participants', '46 Certificates Issued', '3 Days Intensive Training', 'Virtual Format']
+      highlights: ['100+ Participants', '46 Certificates Issued', '3 Days Intensive Training', 'Virtual Format'],
+      link: null
+    },
+    {
+      title: 'DNA X OSCI',
+      date: '2025-08-03',
+      endDate: '',
+      time: '24 hour  ',
+      location: 'Virtual Event',
+      attendees: '',
+      registrations: 'Registration Ongoing',
+      description: `We are pleased to announce that DNA (Developers of Next-gen Applications) has been selected as an Official Community Partner of OSCI (Open Source Connect India). This partnership offers developers a unique opportunity to:- Contribute to prominent open-source projects,- Gain visibility on GitHub,- Enhance professional portfolios.Click The Join button bellow  to participate in OSCI's initiatives and leverage guidance from experienced contributors and mentors. Let's collectively showcase DNA's capabilities.`,
+      tags: ['Open Source', 'Github Profile'],
+      status: 'Ongoing',
+      highlights: ['Open Source Contribution', '15 Days Intensive Training', 'Virtual Format'],
+      link: null
     }
   ];
 
@@ -27,7 +44,7 @@ const Events = () => {
             <span className="gradient-text">Events</span> & Meetups
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Join our community events, workshops, and hackathons. Learn, network, 
+            Join our community events, workshops, and hackathons. Learn, network,
             and collaborate with fellow developers.
           </p>
         </div>
@@ -35,8 +52,8 @@ const Events = () => {
         {/* Recent Event */}
         <div className="mb-16">
           <h3 className="text-2xl font-bold mb-8 text-center">Recent Events</h3>
-          <div className="grid grid-cols-1 max-w-3xl mx-auto">
-            {pastEvents.map((event, index) => (
+          <div className="grid grid-cols-1 max-w-3xl mx-auto gap-5">
+            {Events.map((event, index) => (
               <div
                 key={index}
                 className="glass-card p-8 rounded-2xl hover-glow border-l-4 border-l-green-400"
@@ -44,7 +61,7 @@ const Events = () => {
                 <div className="flex justify-between items-start mb-4">
                   <h4 className="text-2xl font-bold text-green-400">{event.title}</h4>
                   <span className="bg-green-400 text-black px-3 py-1 rounded-full text-sm font-mono">
-                    COMPLETED
+                    {event.status}
                   </span>
                 </div>
 
@@ -52,7 +69,7 @@ const Events = () => {
                   <div className="space-y-3">
                     <div className="flex items-center text-muted-foreground">
                       <Calendar className="h-4 w-4 mr-2 text-green-400" />
-                      <span>July 25-27, 2025</span>
+                      <span>{event.date}</span>
                     </div>
                     <div className="flex items-center text-muted-foreground">
                       <Clock className="h-4 w-4 mr-2 text-green-400" />
@@ -66,7 +83,7 @@ const Events = () => {
                     </div>
                     <div className="flex items-center text-muted-foreground">
                       <Users className="h-4 w-4 mr-2 text-green-400" />
-                      <span>{event.attendees}+ Attendees • {event.registrations}+ Registrations</span>
+                      <span>{event.attendees ? `${event.attendees} Attendees • ${event.registrations} Registrations` : event.registrations}</span>
                     </div>
                   </div>
                 </div>
@@ -85,12 +102,37 @@ const Events = () => {
                 </div>
 
                 {/* Highlights */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-black/30 rounded-lg p-4">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 bg-black/30 rounded-lg p-4 mb-6">
                   {event.highlights.map((highlight, idx) => (
                     <div key={idx} className="text-center">
                       <div className="text-green-400 font-mono text-sm">{highlight}</div>
                     </div>
                   ))}
+                </div>
+
+                {/* Registration Button */}
+                <div className="flex justify-center">
+                  <button
+                    className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
+                      event.status.toLowerCase() === 'completed'
+                        ? 'bg-gray-600 text-gray-400 cursor-not-allowed'
+                        : 'bg-green-400 text-black hover:bg-green-500'
+                    }`}
+                    disabled={event.status.toLowerCase() === 'completed'}
+                    onClick={() => {
+                      if (event.link) {
+                        window.open(event.link, '_blank');
+                      } else {
+                        toast({
+                          title: "Registration Link",
+                          description: "Registration link will be available soon!",
+                          variant: "default",
+                        });
+                      }
+                    }}
+                  >
+                    {event.status.toLowerCase() === 'completed' ? 'Ended' : 'Join Now'}
+                  </button>
                 </div>
               </div>
             ))}
@@ -109,37 +151,16 @@ const Events = () => {
                 Stay tuned for exciting upcoming workshops, hackathons, and community meetups.
               </p>
             </div>
-            
+
             <div className="flex justify-center space-x-4">
               <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce"></div>
-              <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce" style={{animationDelay: '0.1s'}}></div>
-              <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce" style={{animationDelay: '0.2s'}}></div>
+              <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
+              <div className="w-3 h-3 bg-cyan-400 rounded-full animate-bounce" style={{ animationDelay: '0.2s' }}></div>
             </div>
           </div>
         </div>
 
-        {/* Rewards and Certificates Section */}
-        <div className="mt-16 text-center">
-          <div className="glass-card p-8 rounded-2xl max-w-3xl mx-auto border border-orange-400/30">
-            <div className="mb-6">
-              <div className="w-16 h-16 bg-orange-400/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <Award className="h-8 w-8 text-orange-400" />
-              </div>
-              <h3 className="text-3xl font-bold text-orange-400 mb-4 font-mono">Event Rewards & Certificates</h3>
-              <p className="text-xl text-muted-foreground mb-6">
-                Download your certificates and view rewards from our past events. Showcase your achievements and keep track of your learning journey with DNA Lead Community.
-              </p>
-              
-              <Link 
-                to="/rewards" 
-                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-orange-400 to-red-400 text-black font-bold rounded-full hover:shadow-lg hover:shadow-orange-400/25 transition-all duration-300 transform hover:scale-105"
-              >
-                <Award className="h-5 w-5 mr-2" />
-                View Rewards & Certificates
-              </Link>
-            </div>
-          </div>
-        </div>
+
       </div>
     </section>
   );

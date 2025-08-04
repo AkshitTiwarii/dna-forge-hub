@@ -2,9 +2,16 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { 
+  BrowserRouter, 
+  Routes, 
+  Route,
+  createBrowserRouter,
+  RouterProvider,
+  createRoutesFromElements
+} from "react-router-dom";
 import Index from "./pages/Index";
-import Rewards from "./pages/Rewards";
+import Events from "./pages/Events";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import ForgotPassword from "./pages/ForgotPassword";
@@ -17,32 +24,40 @@ const queryClient = new QueryClient();
 
 import { UserProvider } from './contexts/user-context';
 
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <Route>
+      <Route path="/" element={<Index />} />
+      <Route 
+        path="/events" 
+        element={
+          <ProtectedRoute>
+            <Events />
+          </ProtectedRoute>
+        } 
+      />
+      <Route path="/login" element={<Login />} />
+      <Route path="/signup" element={<Signup />} />
+      <Route path="/forgot-password" element={<ForgotPassword />} />
+      <Route path="/opportunities" element={<Opportunities />} />
+      <Route path="/auth/callback" element={<AuthCallback />} />
+      <Route path="*" element={<NotFound />} />
+    </Route>
+  ),
+  {
+    future: {
+      v7_relativeSplatPath: true
+    }
+  }
+);
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <UserProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route 
-            path="/rewards" 
-            element={
-              <ProtectedRoute>
-                <Rewards />
-              </ProtectedRoute>
-            } 
-          />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
-          <Route path="/opportunities" element={<Opportunities />} />
-          <Route path="/auth/callback" element={<AuthCallback />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+        <RouterProvider router={router} />
       </UserProvider>
     </TooltipProvider>
   </QueryClientProvider>
