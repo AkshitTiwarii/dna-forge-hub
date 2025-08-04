@@ -7,19 +7,6 @@ const Events = () => {
 
   const Events = [
     {
-      title: 'Web Development Workshop',
-      date: 'July 25-27, 2025',
-      time: '7:00 PM - 8:00 PM',
-      location: 'Virtual Event',
-      attendees: 100,
-      registrations: 200,
-      description: 'A comprehensive 3-day workshop covering modern web development technologies, frameworks, and best practices.',
-      tags: ['Web Development', 'HTML', 'CSS', 'JavaScript'],
-      status: 'completed',
-      highlights: ['100+ Participants', '46 Certificates Issued', '3 Days Intensive Training', 'Virtual Format'],
-      link: null
-    },
-    {
       title: 'DNA X OSCI',
       date: '2025-08-03',
       endDate: '',
@@ -31,6 +18,19 @@ const Events = () => {
       tags: ['Open Source', 'Github Profile'],
       status: 'Ongoing',
       highlights: ['Open Source Contribution', '15 Days Intensive Training', 'Virtual Format'],
+      link: null
+    },
+    {
+      title: 'Web Development Workshop',
+      date: 'July 25-27, 2025',
+      time: '7:00 PM - 8:00 PM',
+      location: 'Virtual Event',
+      attendees: 100,
+      registrations: 200,
+      description: 'A comprehensive 3-day workshop covering modern web development technologies, frameworks, and best practices.',
+      tags: ['Web Development', 'HTML', 'CSS', 'JavaScript'],
+      status: 'completed',
+      highlights: ['100+ Participants', '46 Certificates Issued', '3 Days Intensive Training', 'Virtual Format'],
       link: null
     }
   ];
@@ -51,7 +51,7 @@ const Events = () => {
 
         {/* Recent Event */}
         <div className="mb-16">
-          <h3 className="text-2xl font-bold mb-8 text-center">Recent Events</h3>
+          <h3 className="text-2xl font-bold mb-8 text-center">Events</h3>
           <div className="grid grid-cols-1 max-w-3xl mx-auto gap-5">
             {Events.map((event, index) => (
               <div
