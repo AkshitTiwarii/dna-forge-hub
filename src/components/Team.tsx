@@ -38,14 +38,14 @@ const Team = () => {
     },
     {
       name: 'Rajan Jha',
-      role: 'Mobile Development Specialist',
+      role: 'Project Manager & Support Specialist',
       image: 'https://protoinfrastack.ivondy.com/media/rbrduTcOIEatoaXF26WUFdTeSpr8CascZV9v',
-      bio: 'Cross-platform mobile expert specializing in React Native and Flutter. Creates seamless mobile experiences with focus on performance and user engagement.',
+      bio: 'Skilled in managing projects from planning to delivery while providing efficient support, quick issue resolution, and clear communication.',
       github: 'https://github.com/rajanjha',
       linkedin: 'https://linkedin.com/in/rajanjha',
-      email: 'rajan@dnaforgehub.dev',
-      skills: ['React Native', 'Flutter', 'iOS', 'Android'],
-      achievements: ['10+ apps in production', '1M+ downloads', 'Google Play featured developer']
+      email: 'rajan.jha114430@gmail.com',
+      skills: ['ProjectManagement', 'TeamLeadership', 'ProblemSolving', 'ClientSupport','CommunicationSkills','IssueResolution','DecisionMaking','ConflictResolution','TechnicalSupport','OrganizationalSkills'],
+      achievements: ['Contributer@GSSoc 25, OSconnect', '50 + project', 'Lead Core Member']
     },
   ];
 
